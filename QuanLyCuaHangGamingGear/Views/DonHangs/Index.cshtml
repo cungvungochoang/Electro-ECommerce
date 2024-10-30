@@ -1,0 +1,96 @@
+﻿@using QuanLyCuaHangGamingGear.Helper;
+@model IEnumerable<QuanLyCuaHangGamingGear.Models.DonHang>
+
+@{
+	List<GioHang> list = ViewContext.HttpContext.Session.Get<List<GioHang>>("GioHang") ?? new List<GioHang>();
+	Layout = null;
+	var uniqueTransactionIds = Model.Select(item => item.MaGiaoDich).Distinct().ToList();
+	uniqueTransactionIds = uniqueTransactionIds.OrderByDescending(id => id).ToList();
+}
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("Doctype")
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		@await Component.InvokeAsync("Header")
+		<!-- /TOP HEADER -->
+		<!-- MAIN HEADER -->
+		@await Component.InvokeAsync("Searchbar")
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+	<!-- NAVIGATION -->
+	@await Component.InvokeAsync("Navbar")
+	<!-- /NAVIGATION -->
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">Thanh toán</h3>
+					<ul class="breadcrumb-tree">
+						<li class="active"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+						<li class="active">Thanh toán</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- SECTION -->
+	<div class="section">
+		<div class="container">
+			<!-- Order Details -->
+			<div class="col-md-5 order-details" style=" margin-left:180px; width:800px">
+				<div class="section-title text-center">
+					<h3 class="title">Lịch sử đơn hàng</h3>
+				</div>
+				<div class="order-summary">
+					@foreach (var transactionId in uniqueTransactionIds)
+					{
+						var transactionItems = Model.Where(item => item.MaGiaoDich == transactionId).ToList();
+
+						<div style="margin-top:50px; margin-bottom:50px">
+							Mã giao dịch: @transactionId
+							@foreach (var item in transactionItems)
+							{
+								<div class="product-widget" style="margin-top:20px">
+									<div class="order-col">
+										<img src="@item.MaSpNavigation?.HinhAnh" alt="" style="width:50px">
+										<div>@item.SoLuongSp x @item.MaSpNavigation?.TenSp</div>
+										<div>@item.GiaSp?.ToString("#,##0") VND</div>
+									</div>
+								</div>
+							}
+							<div class="order-col">
+								<div><strong>TỔNG CỘNG</strong></div>
+								<div><strong>@transactionItems.Sum(item => item.ThanhTien ?? 0).ToString("#,##0") VND</strong></div>
+							</div>
+						</div>
+						<div class="product-rating"></div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Order Details -->
+	<!-- /SECTION -->
+	<!-- FOOTER -->
+	@await Component.InvokeAsync("Footer")
+	<!-- /FOOTER -->
+	<!-- jQuery Plugins -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/slick.min.js"></script>
+	<script src="/js/nouislider.min.js"></script>
+	<script src="/js/jquery.zoom.min.js"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+</html>

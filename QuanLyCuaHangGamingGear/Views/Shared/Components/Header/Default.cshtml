@@ -1,0 +1,25 @@
+﻿@{
+	string userEmail = ViewContext.HttpContext.Session.GetString("UserEmail");
+	string userName = ViewContext.HttpContext.Session.GetString("UserName");
+}
+
+<div id="top-header">
+	<div class="container">
+		<ul class="header-links pull-left">
+			<li><a href="/GioHang/Index"><i class="fa fa-phone"></i> 0987654321</a></li>
+			<li><a href="#"><i class="fa fa-envelope-o"></i> gaminggear@email.com</a></li>
+			<li><a href="#"><i class="fa fa-map-marker"></i> 140 Lê Trọng Tấn</a></li>
+		</ul>
+		<ul class="header-links pull-right">
+			@if (!string.IsNullOrEmpty(userEmail))
+			{
+				<li><a href="#"><i class="fa fa-user-o"></i> Xin chào, @userName</a></li>
+				<li><a href="~/KhachHangs/Logout">Đăng Xuất</a></li>
+			}
+			else
+			{
+				<li><a href="~/KhachHangs/Login"><i class="fa fa-user-o"></i> Đăng nhập</a></li>
+			}
+		</ul>
+	</div>
+</div>

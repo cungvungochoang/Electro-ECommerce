@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.NhanVien>
+@{
+    Layout = "_AdminLayout";
+}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Danh sách nhân viên
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên nhân viên</th>
+                                <th>CCCD</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Chức vụ</th>
+                                <th>Mật khẩu</th>
+                                <th>Ghi chú</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên nhân viên</th>
+                                <th>CCCD</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Chức vụ</th>
+                                <th>Mật khẩu</th>
+                                <th>Ghi chú</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaNv</td>
+                                    <td>@item.TenNv</td>
+                                    <td>@item.Cccd</td>
+                                    <td>@item.DiaChi</td>
+                                    <td>@item.DienThoai</td>
+                                    <td>@item.ChucVu</td>
+                                    <td>@item.MatKhau</td>
+                                    <td>@item.GhiChu</td>
+                                    <th>Action</th>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

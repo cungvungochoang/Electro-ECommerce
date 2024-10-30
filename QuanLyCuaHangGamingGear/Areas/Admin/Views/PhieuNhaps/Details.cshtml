@@ -1,0 +1,48 @@
+﻿@model QuanLyCuaHangGamingGear.Models.PhieuNhap
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PhieuNhap</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayNhap)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayNhap)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TongTienPn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TongTienPn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNccNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaNccNavigation.MaNcc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNvNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaNvNavigation.MaNv)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaPn">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

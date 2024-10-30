@@ -1,0 +1,67 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.SanPham>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Danh sách sản phẩm
+                </div>
+                <div class="card-body">
+                    <a href="/Admin/SanPhams/Create" class="btn btn-outline-primary" style="margin-bottom:50px"><i class="bi bi-pencil-square"></i> Thêm sản phẩm mới</a>
+
+                    <table id="datatablesSimple" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th class="center-cell">ID</th>
+                                <th class="center-cell">Tên sản phẩm</th>
+                                <th class="center-cell">Loại sản phẩm</th>
+                                <th class="center-cell">Hãng sản xuất</th>
+                                <th class="center-cell">Hình ảnh</th>
+                                <th class="center-cell">Đơn giá</th>
+                                <th class="center-cell">Số lượng</th>
+                                <th class="center-cell">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th class="center-cell">ID</th>
+                                <th class ="center-cell">Tên sản phẩm</th>
+                                <th class="center-cell">Loại sản phẩm</th>
+                                <th class="center-cell">Hãng sản xuất</th>
+                                <th class="center-cell">Hình ảnh</th>
+                                <th class="center-cell">Đơn giá</t>
+                                <th class="center-cell">Số lượng</th>
+                                <th class="center-cell">Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="center-cell">@item.MaSp</td>
+                                    <td class="center-cell">@item.TenSp</td>
+                                    <td class="center-cell">@item.MaLoaiSpNavigation?.TenLoaiSp</td>
+                                    <td class="center-cell">@item.MaHangSxNavigation?.TenHangSx</td>
+                                    <td class="center-cell"><img src="@item.HinhAnh" alt="Product Image" style="max-width: 100px; max-height: 100px;"></td>
+                                    <td class="center-cell">@item.GiaSp?.ToString("#,##0") VND</td>
+                                    <td class="center-cell">@item.SoLuong</td>
+                                    <th class="center-cell">
+                                        <a href="#" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a> 
+                                        <a class="btn btn-outline-primary"><i class="bi bi-eye"></i></a> 
+                                        <a class="btn btn-outline-primary"><i class="bi bi-trash"></i></a> 
+                                    </th>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

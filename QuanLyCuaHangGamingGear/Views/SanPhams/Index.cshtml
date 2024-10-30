@@ -1,0 +1,69 @@
+﻿@using QuanLyCuaHangGamingGear.Models.ViewModels;
+@model ProductListVM
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Products";
+}
+<div class="col-md-12">
+	<div class="row">
+		@{
+			if (Model.SanPhams.Count() == 0)
+			{
+				<div class="col-md-12 col-xs-12" style="height:400px;">
+					<div style="width:100%;display:flex;align-items:center;justify-content:center;height:100%;font-size:22px;color:black;font-weight:bold;">
+						Không có sản phẩm nào được tìm thấy theo yêu cầu
+					</div>
+				</div>
+			}
+			else
+			{
+				@foreach (var item in Model.SanPhams)
+				{
+					<div class="col-md-4 col-xs-6">
+						<div class="product">
+							<div class="product-img">
+								<img src="@item.HinhAnh" alt="">
+								<div class="product-label">
+									<span class="new">NEW</span>
+								</div>
+							</div>
+							<div class="product-body">
+								<p class="product-category">@item.MaLoaiSpNavigation?.TenLoaiSp</p>
+								<h3 class="product-name">
+									<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+								</h3>
+								<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+								<div class="product-rating">
+									<i>@item.MaHangSxNavigation?.TenHangSx</i>
+								</div>
+								<div class="product-btns">
+									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">So sánh</span></button>
+									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem nhanh</span></button>
+								</div>
+							</div>
+							<form asp-action="AddToCart" asp-controller="GioHang" asp-route-id="@(item.MaSp)">
+								<div class="add-to-cart">
+									<button class="add-to-cart-btn" name="quantity" value="1">
+										<i class="fa fa-shopping-cart">
+										</i> THÊM VÀO GIỎ
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				}
+			}
+		}
+	</div>
+</div>
+<div class="store-filter clearfix">
+	<ul class="store-pagination">
+		@for (int i = 1; i <= Model.PagingInfo.TotalPages; i++)
+		{
+			<li><a href="/SanPhams/?productPage=@i">@i</a></li>
+		}
+	</ul>
+	<!-- /store bottom filter -->
+</div>

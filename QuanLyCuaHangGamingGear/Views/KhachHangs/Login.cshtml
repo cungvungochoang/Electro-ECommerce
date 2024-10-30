@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <form asp-controller="KhachHangs" asp-action="Login">
+        <div class="login-box">
+            <div class="login-header">
+                <header>Đăng nhập</header>
+            </div>
+            <div class="input-box">
+                <input type="email" name="username" class="input-field" placeholder="Email" autocomplete="off" required>
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" class="input-field" placeholder="Mật khẩu" autocomplete="off" required>
+            </div>
+            <div class="py-3" style="margin-left:100px; margin-bottom:20px">
+                @if (!String.IsNullOrEmpty(ViewBag.Error))
+                {
+                    <span class="p-2 text-rose-600 font-semibold">
+                        @ViewBag.Error
+                    </span>
+                }
+            </div>
+            <div class="input-submit">
+                <button class="submit-btn" id="submit"></button>
+                <label for="submit">Đăng nhập</label>
+            </div>
+            <div class="sign-up-link">
+                <p>Bạn chưa có tài khoản? <a href="@Url.Action("Register", "KhachHangs")">Đăng ký</a> ngay</p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

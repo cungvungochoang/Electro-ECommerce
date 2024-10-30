@@ -1,0 +1,63 @@
+﻿@model QuanLyCuaHangGamingGear.Models.SanPham
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenSp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaSp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GiaSp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaHangSxNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaHangSxNavigation.MaHangSx)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaLoaiSpNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaLoaiSpNavigation.MaLoaiSp)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="MaSp" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

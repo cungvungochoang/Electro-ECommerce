@@ -1,0 +1,66 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.DonHang>
+@{
+    Layout = "_AdminLayout";
+}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Danh sách đơn hàng
+                </div>
+                <div class="card-body">
+                    <table id="datatablesSimple" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Mã giao dịch</th>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                                <th>Khách hàng</th>
+                                <th>Nhân viên</th>
+                                <th>Ghi chú</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Mã giao dịch</th>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                                <th>Khách hàng</th>
+                                <th>Nhân viên</th>
+                                <th>Ghi chú</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaDh</td>
+                                    <td>@item.MaGiaoDich</td>
+                                    <td>@item.MaSpNavigation?.TenSp</td>
+                                    <td>@item.SoLuongSp</td>
+                                    <td>@item.GiaSp?.ToString("#,##0") VND</td>
+                                    <td>@item.ThanhTien?.ToString("#,##0") VND</td>
+                                    <td>@item.MaKhNavigation?.TenKh</td>
+                                    <td>@item.TenNvpt</td>
+                                    <td>@item.GhiChu</td>
+                                    <th>Action</th>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

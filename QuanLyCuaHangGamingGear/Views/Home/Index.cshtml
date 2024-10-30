@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.SanPham>
+
+@{
+	ViewData["Title"] = "Home Page";
+	Layout = "_Layout";
+}
+@{
+	await Html.RenderPartialAsync("Chatbot");
+}
+<div class="products-tabs">
+	<!-- tab -->
+	<div id="tab2" class="tab-pane fade in active">
+		<div class="products-slick" data-nav="#slick-nav-2">
+			<!-- product -->
+			@foreach (var item in Model)
+			{
+				<div class="product">
+					<div class="product-img">
+						<img src="@item.HinhAnh" alt="">
+						<div class="product-label">
+							<span class="new">NEW</span>
+						</div>
+					</div>
+					<div class="product-body">
+						<p class="product-category">@item.MaLoaiSpNavigation?.TenLoaiSp</p>
+						<h3 class="product-name">
+							<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+						</h3>
+						<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+						<div class="product-rating">
+							<i>@item.MaHangSxNavigation?.TenHangSx</i>
+							
+						</div>
+						<div class="product-btns">
+							<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+							<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+							<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+						</div>
+					</div>
+					<form asp-action="AddToCart" asp-controller="GioHang" asp-route-id="@(item.MaSp)">
+						<div class="add-to-cart">
+							<button class="add-to-cart-btn" name="quantity" value="1">
+								<i class="fa fa-shopping-cart">
+								</i> THÊM VÀO GIỎ HÀNG</button>
+						</div>
+					</form>
+				</div>
+			}
+			<!-- /product -->
+
+		</div>
+		<div id="slick-nav-2" class="products-slick-nav"></div>
+	</div>
+	<!-- /tab -->
+</div>
+

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<GioHang>
+@{
+	string userEmail = ViewContext.HttpContext.Session.GetString("UserEmail");
+	string userName = ViewContext.HttpContext.Session.GetString("UserName");
+	decimal tongThanhToan = 0;
+}
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("Doctype")
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		@await Component.InvokeAsync("Header")
+		<!-- /TOP HEADER -->
+		<!-- MAIN HEADER -->
+		@await Component.InvokeAsync("Searchbar")
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+	<!-- NAVIGATION -->
+	@await Component.InvokeAsync("Navbar");
+	<!-- /NAVIGATION -->
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">Giỏ hàng</h3>
+					<ul class="breadcrumb-tree">
+						<li class="active"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+						<li class="active"><a href="@Url.Action("Index", "GioHang")">Giỏ hàng</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- SECTION -->
+	<div class="section">
+		<div class="container">
+			<!-- Order Details -->
+			<div class="col-md-5 order-details" style="width:1000px; margin-left:80px">
+				<div class="section-title text-center">
+					<h3 class="title">Giỏ hàng của bạn</h3>
+				</div>
+				<div class="order-summary">
+					<div class="order-col">
+						<div><strong>SẢN PHẨM</strong></div>
+						<div><strong style ="margin-left:500px";>SỐ LƯỢNG</strong>
+					</div>
+						<div><strong>THÀNH TIỀN</strong></div>
+					</div>
+					@foreach(var item in Model)
+					{
+						<div class="product-widget">
+							<div class="order-col">
+								<img src="@item.HinhAnh" alt="" style="width:50px">
+								<div>@item.TenSP</div>
+								<div class="qty-label">
+									<div class="input-number" style="width:80px">
+										<input autocomplete="off" type="number" name="quantity" value="@item.SoLuong">
+										<a href="/GioHang/AddToCart/?id=@item.MaSP&quantity=1" class="qty-up">+</a>
+										<a href="/GioHang/AddToCart/?id=@item.MaSP&quantity=-1" class="qty-down">-</a>
+									</div>
+								</div>
+								<div>@item.ThanhTien.ToString("#,##0") VND</div>
+								@{
+									tongThanhToan += item.ThanhTien;
+								}
+							</div>
+							<a href="/GioHang/RemoveFromCart/?id=@item.MaSP" class="delete"><i class="fa fa-close"></i></a>
+						</div>
+					}
+					<br />
+					<div class="order-col">
+						<h5>Tổng thanh toán:</h5>
+						<div>@tongThanhToan.ToString("#,##0") VND</div>
+					</div>
+				</div>
+				@if (!string.IsNullOrEmpty(userEmail))
+				{
+					<a href="@Url.Action("Order", "DonHangs")" class="primary-btn order-submit">Đặt hàng</a>
+				}
+				else
+				{
+					<a href="@Url.Action("Login", "KhachHangs")" class="primary-btn order-submit">Đặt hàng</a>
+				}
+
+			</div>
+		</div>
+	</div>
+	<!-- /Order Details -->
+	<!-- /SECTION -->
+	<!-- FOOTER -->
+	@await Component.InvokeAsync("Footer")
+	<!-- /FOOTER -->
+	<!-- jQuery Plugins -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/slick.min.js"></script>
+	<script src="/js/nouislider.min.js"></script>
+	<script src="/js/jquery.zoom.min.js"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+</html>

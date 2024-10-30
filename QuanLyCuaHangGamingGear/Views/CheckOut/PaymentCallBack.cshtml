@@ -1,0 +1,69 @@
+﻿@using QuanLyCuaHangGamingGear.Helper;
+
+@{
+	List<GioHang> list = ViewContext.HttpContext.Session.Get<List<GioHang>>("GioHang") ?? new List<GioHang>();
+	decimal tongThanhToan = 0;
+	Layout = null;
+	string userEmail = ViewContext.HttpContext.Session.GetString("UserEmail");
+	string userSDT = ViewContext.HttpContext.Session.GetString("UserPhone");
+	string userName = ViewContext.HttpContext.Session.GetString("UserName");
+	string userAdress = ViewContext.HttpContext.Session.GetString("UserAdress");
+}
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("Doctype")
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		@await Component.InvokeAsync("Header")
+		<!-- /TOP HEADER -->
+		<!-- MAIN HEADER -->
+		@await Component.InvokeAsync("Searchbar")
+		<!-- /MAIN HEADER -->
+	</header>
+	<!-- /HEADER -->
+	<!-- NAVIGATION -->
+	@await Component.InvokeAsync("Navbar")
+	<!-- /NAVIGATION -->
+	<!-- BREADCRUMB -->
+	<div id="breadcrumb" class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="breadcrumb-header">Thanh toán</h3>
+					<ul class="breadcrumb-tree">
+						<li class="active"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+						<li class="active">Thanh toán</li>
+					</ul>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /BREADCRUMB -->
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<p style="text-align:center; font-size:25px">Thanh toán thành công! Vui lòng <a href="@Url.Action("CreateOrder", "DonHangs")">XÁC NHẬN</a> đơn hàng</p>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+	<!-- FOOTER -->
+	@await Component.InvokeAsync("Footer")
+	<!-- /FOOTER -->
+	<!-- jQuery Plugins -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/slick.min.js"></script>
+	<script src="/js/nouislider.min.js"></script>
+	<script src="/js/jquery.zoom.min.js"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+</html>

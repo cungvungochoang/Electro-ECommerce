@@ -1,0 +1,122 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.SanPham>
+@{
+	string userEmail = ViewContext.HttpContext.Session.GetString("UserEmail");
+	string userName = ViewContext.HttpContext.Session.GetString("UserName");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+	@await Component.InvokeAsync("Doctype")
+<body>
+	<!-- HEADER -->
+	<header>
+		<!-- TOP HEADER -->
+		@await Component.InvokeAsync("Header")
+		<!-- /TOP HEADER -->
+		<!-- MAIN HEADER -->
+		@await Component.InvokeAsync("Searchbar")
+		<!-- /MAIN HEADER -->
+	</header>
+	@* @await Component.InvokeAsync("Chatbot") *@
+	<!-- /HEADER -->
+	<!-- NAVIGATION -->
+	@await Component.InvokeAsync("Navbar");
+	<!-- /NAVIGATION -->
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- section title -->
+				<div class="col-md-12">
+					<div class="section-title">
+						<h3 class="title">Sản phẩm mới</h3>
+						<div class="section-nav">
+							<ul class="section-tab-nav tab-nav">
+								<li><a data-toggle="tab" href="#tab1">Razer</a></li>
+								<li><a data-toggle="tab" href="#tab1">Logitech</a></li>
+								<li><a data-toggle="tab" href="#tab1">Steelseries</a></li>
+								<li><a data-toggle="tab" href="#tab1">HyperX</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /section title -->
+				<!-- Products tab & slick -->
+				<div class="col-md-12">
+					<div class="row">
+						@RenderBody()
+					</div>
+				</div>
+				<!-- Products tab & slick -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+	<!-- SECTION -->
+	@await Component.InvokeAsync("Topselling")
+	<!-- /SECTION -->
+	<!-- NEWSLETTER -->
+	<div id="newsletter" class="section">
+	<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="newsletter">
+						@if (string.IsNullOrEmpty(userEmail))
+						{
+							<p>Đăng ký để nhận thêm <strong>ƯU ĐÃI</strong></p>
+							<form>
+								<input class="input" type="email" placeholder="Nhập Email của bạn">
+								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Đăng ký</button>
+							</form>
+							<ul class="newsletter-follow">
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-pinterest"></i></a>
+								</li>
+							</ul>
+						}
+						else
+						{
+							<div></div>
+						}
+					</div>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /NEWSLETTER -->
+	<!-- FOOTER -->
+	@await Component.InvokeAsync("Footer")
+	<!-- /FOOTER -->
+	<!-- /FOOTER -->
+	<!-- jQuery Plugins -->
+
+	<base href="~/" />
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/slick.min.js"></script>
+	<script src="/js/nouislider.min.js"></script>
+	<script src="/js/jquery.zoom.min.js"></script>
+	<script src="/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

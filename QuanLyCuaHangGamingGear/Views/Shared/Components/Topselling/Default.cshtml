@@ -1,0 +1,208 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.SanPham>
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-4 col-xs-6">
+				<div class="section-title">
+					<h4 class="title">Top selling</h4>
+					<div class="section-nav">
+						<div id="slick-nav-3" class="products-slick-nav"></div>
+					</div>
+				</div>
+
+				<div class="products-widget-slick" data-nav="#slick-nav-3">
+					<div>
+						@if (Model != null)
+						{
+							@foreach (var item in Model.Where(n => n.MaLoaiSp == 1).Take(3))
+							{
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="@item.HinhAnh" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name">
+											<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+										</h3>
+										<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+							}
+						}
+						else
+						{
+							<p>No data available</p>
+						}
+					</div>
+
+					<div>
+						@if (Model != null)
+						{
+							@foreach (var item in Model.Where(n => n.MaLoaiSp == 1).Take(3))
+							{
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="@item.HinhAnh" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name">
+											<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+										</h3>
+										<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+							}
+						}
+						else
+						{
+							<p>No data available</p>
+						}
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-xs-6">
+				<div class="section-title">
+					<h4 class="title">Top selling</h4>
+					<div class="section-nav">
+						<div id="slick-nav-4" class="products-slick-nav"></div>
+					</div>
+				</div>
+
+				<div class="products-widget-slick" data-nav="#slick-nav-4">
+					<div>
+						@if (Model != null)
+						{
+							@foreach (var item in Model.Where(n => n.MaLoaiSp == 2).Take(3))
+							{
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="@item.HinhAnh" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name">
+											<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+										</h3>
+										<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+							}
+						}
+						else
+						{
+							<p>No data available</p>
+						}
+					</div>
+
+					<div>
+						@if (Model != null)
+						{
+							@foreach (var item in Model.Where(n => n.MaLoaiSp == 2).Take(3))
+							{
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="@item.HinhAnh" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name">
+											<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+										</h3>
+										<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+							}
+						}
+						else
+						{
+							<p>No data available</p>
+						}
+					</div>
+				</div>
+			</div>
+
+			<div class="clearfix visible-sm visible-xs"></div>
+
+			<div class="col-md-4 col-xs-6">
+				<div class="section-title">
+					<h4 class="title">Top selling</h4>
+					<div class="section-nav">
+						<div id="slick-nav-5" class="products-slick-nav"></div>
+					</div>
+				</div>
+
+				<div class="products-widget-slick" data-nav="#slick-nav-5">
+					<div>
+						@if (Model != null)
+						{
+							@foreach (var item in Model.Where(n => n.MaLoaiSp == 3).Take(3))
+							{
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="@item.HinhAnh" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name">
+											<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+										</h3>
+										<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+							}
+						}
+						else
+						{
+							<p>No data available</p>
+						}
+					</div>
+
+					<div>
+						@if (Model != null)
+						{
+							@foreach (var item in Model.Where(n => n.MaLoaiSp == 3).Take(3))
+							{
+								<!-- product widget -->
+								<div class="product-widget">
+									<div class="product-img">
+										<img src="@item.HinhAnh" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Category</p>
+										<h3 class="product-name">
+											<a asp-controller="SanPhams" asp-action="Details" asp-route-id="@item.MaSp">@item.TenSp</a>
+										</h3>
+										<h4 class="product-price">@item.GiaSp?.ToString("#,##0") VND</h4>
+									</div>
+								</div>
+								<!-- /product widget -->
+							}
+						}
+						else
+						{
+							<p>No data available</p>
+						}
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>

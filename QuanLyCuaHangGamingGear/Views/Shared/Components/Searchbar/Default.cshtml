@@ -1,0 +1,83 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.LoaiSp>
+@{
+	string userEmail = ViewContext.HttpContext.Session.GetString("UserEmail");
+	string userName = ViewContext.HttpContext.Session.GetString("UserName");
+	int? slgh = ViewContext.HttpContext.Session.GetInt32("SoLuongGioHang");
+	if (ViewContext.HttpContext.Session.GetInt32("SoLuongGioHang") == null)
+	{
+		slgh = 0;
+	}
+	else
+	{
+		slgh = ViewContext.HttpContext.Session.GetInt32("SoLuongGioHang");
+	}
+}
+<!-- MAIN HEADER -->
+<div id="header">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- LOGO -->
+			<div class="col-md-3">
+				<div class="header-logo">
+					<a href="/Home/Index" class="logo">
+                        <img src="~/img/logo.png" />
+					</a>
+				</div>
+			</div>
+			<!-- /LOGO -->
+			<!-- SEARCH BAR -->
+			<div class="col-md-6">
+				<div class="header-search">
+					<form asp-controller="SanPhams" asp-action="Index">
+						<select name="cateid" class="input-select">
+							<option value="0">Tất cả</option>
+							@foreach (var item in Model) {
+								<option value="@item.MaLoaiSp">@item.TenLoaiSp</option>
+							}
+						</select>
+						<input class="input" name="keywords" placeholder="Nhập tên sản phẩm...">
+						<button class="search-btn">Search</button>
+					</form>
+				</div>
+			</div>
+			<!-- /SEARCH BAR -->
+			<!-- ACCOUNT -->
+			<div class="col-md-3 clearfix">
+				<div class="header-ctn">
+					<div>
+						@if (!string.IsNullOrEmpty(userEmail))
+						{
+							<a href="/DonHangs/Index">
+								<i class="fa fa-heart-o"></i>
+								<span>Đơn hàng</span>
+							</a>
+						}
+						else
+						{
+							<a href="~/KhachHangs/Login">
+								<i class="fa fa-heart-o"></i>
+								<span>Đơn hàng</span>
+							</a>
+						}
+					</div>
+					
+					<!-- Cart -->
+					<div class="dropdown">
+						<a href="@Url.Action("Index", "GioHang")">
+							<i class="fa fa-shopping-cart"></i>
+							<span>Giỏ hàng</span>
+							<div class="qty">@slgh</div>
+						</a>
+					</div>
+					<!-- /Cart -->
+				</div>
+			</div>
+			<!-- /ACCOUNT -->
+		</div>
+		<!-- row -->
+	</div>
+	<!-- container -->
+</div>
+<!-- /MAIN HEADER -->

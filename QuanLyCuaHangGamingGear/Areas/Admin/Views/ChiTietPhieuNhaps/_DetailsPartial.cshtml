@@ -1,0 +1,12 @@
+﻿@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.MaPn</td>
+        <td>@item.MaSpNavigation.TenSp</td>
+        <td>@item.SoLuongSp</td>
+        <td>@item.GiaNhapSp.ToString("#,##0") VND</td>
+        <td>@item.TongTienNhapSp?.ToString("#,##0") VND</td>
+        <td>@item.GhiChu</td>
+        <td>Action</td>
+    </tr>
+}

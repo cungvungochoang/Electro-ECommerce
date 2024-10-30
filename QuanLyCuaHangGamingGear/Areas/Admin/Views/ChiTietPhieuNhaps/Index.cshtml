@@ -1,0 +1,79 @@
+﻿@model IEnumerable<QuanLyCuaHangGamingGear.Models.ChiTietPhieuNhap>
+@{
+    Layout = "_AdminLayout";
+}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Chi tiết phiếu nhập
+                </div>
+                <div class="card-body">
+                    <div class="combobox" style="margin-bottom:50px">
+                        <label for="myComboBox">Chọn phiếu nhập:</label>
+
+                        <select id="myComboBox">
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.MaPn">@item.MaPn</option>
+                            }
+                        </select>
+                    </div>
+                    <table id="datatablesSimple" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá nhập</th>
+                                <th>Tổng tiền phiếu nhập</th>
+                                <th>Ghi chú</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá nhập</th>
+                                <th>Tổng tiền phiếu nhập</th>
+                                <th>Ghi chú</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody id="tableBody">
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    // When the document is ready
+    $(document).ready(function () {
+        // Attach change event handler to the combobox
+        $('#myComboBox').change(function () {
+            // Get the selected value
+            var selectedMaPN = $(this).val();
+
+            // Make an AJAX request to get the details based on the selected value
+            $.ajax({
+                type: 'GET',
+                url: '/ChiTietPhieuNhaps/GetDetails?maPN=' + selectedMaPN,
+                success: function (data) {
+                    // Replace the table body with the received data
+                    $('#tableBody').html(data);
+                },
+                error: function () {
+                    console.error('Error loading details');
+                }
+            });
+        });
+    });
+</script>
